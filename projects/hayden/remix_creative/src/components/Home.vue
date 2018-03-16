@@ -7,10 +7,17 @@
                 <ul class="projects-list">
                     <li class="project" v-for="project in projects.slice(12)">
                         <a v-bind:href="project.url" target="_blank">
-                            <img v-bind:src='project.covers.original' alt="">
+                            <template v-if="project.covers[404]">
+                                <img v-bind:src='project.covers[404]' alt="project.name">
+                            </template>
+                            <template v-else>
+                                <img v-bind:src='project.covers.original' alt="project.name">
+                            </template>
                             <div class="project-hover">
                                 <h5>{{ project.name }}</h5>
-                                <p>{{ project.fields }}</p>
+                                <template v-for="field in fields">
+                                    {{ field }}<span>, </span>
+                                </template>
                             </div>
                             <!-- / project hover -->
                         </a>
@@ -31,7 +38,8 @@ export default {
     data() {
         return {
             projects: [],
-            users: ['mattharvey', 'vitorugo', 'rafaeldraws', 'stanleysun']
+            users: ['mattharvey', 'vitorugo', 'rafaeldraws', 'stanleysun'],
+            fields: []
         }
     },
     components: {
@@ -39,9 +47,10 @@ export default {
     },
     methods: {
         getProjects: function() {
-            this.$http.jsonp('http://behance.net/v2/users/mattharvey/projects?api_key=wmkhz92FaRjQt4LZzE0L3akK6CXqQOMB')
+            this.$http.jsonp('http://behance.net/v2/users/mattharvey/projects?api_key=ddao6kwQUp8x90o1u1uk8Lt82md8thrX')
                 .then(response => {
                     this.projects = response.body.projects;
+                    this.fields = response.body.projects.fields;
                     this.shuffleArray(this.projects);
                 });
         },

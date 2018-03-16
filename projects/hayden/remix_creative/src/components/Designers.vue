@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         getDesigners: function() {
-            this.$http.jsonp('http://behance.net/v2/users/haydenwrat86b8/following?api_key=wmkhz92FaRjQt4LZzE0L3akK6CXqQOMB')
+            this.$http.jsonp('http://behance.net/v2/users/haydenwrat86b8/following?api_key=ddao6kwQUp8x90o1u1uk8Lt82md8thrX')
                 .then(response => {
                     this.designers = response.body.following;
                     //console.log(JSON.stringify(this.designers))
