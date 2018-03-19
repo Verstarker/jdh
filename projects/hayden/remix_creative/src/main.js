@@ -8,16 +8,20 @@ import App from './App'
 import VueRouter from 'vue-router'
 //import the vue resource
 import VueResource from 'vue-resource'
+//imoprt the vue pagination
+import VuePaginate from 'vuejs-paginate'
 
 
 //tell vue to use the router and friends
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(VuePaginate)
 
 import Home from './components/Home'
 import Designers from './components/Designers'
 import Designer from './components/Designer'
 import About from './components/About'
+import ProjectDetails from './components/ProjectDetails'
 
 //define your routes
 const routes = [{
@@ -36,6 +40,11 @@ const routes = [{
     path: '/designers/:username',
     component: Designer,
     props: true
+  },
+  {
+      path: '/designers/:username/:projectid',
+      component: ProjectDetails,
+      props: true
   }
 ]
 

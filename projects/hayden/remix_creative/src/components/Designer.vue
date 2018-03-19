@@ -3,7 +3,7 @@
         <Banner></Banner>
 
         <div class="holder">
-            <h2>{{ designer.first_name }} {{ designer.last_name }}</h2>
+            <h2>{{ designer.display_name }}</h2>
             <div class="designer-info">
                 <div class="designer-photo">
                     <img v-bind:src="designer.images[276]" alt="designer.first_name">
@@ -29,25 +29,25 @@
             <!-- / designer info -->
 
            <div class="projects">
-               <h2>{{designer.first_name}} {{ designer.last_name }}'s Projects</h2>
+               <h2>{{designer.display_name }}'s Projects</h2>
                 <ul class="projects-list">
-                    <li class="project" v-for="project in projects">
-                        <a href="#">
-                            <template v-if="project.covers[404]">
-                                <img v-bind:src='project.covers[404]' alt="project.name">
-                            </template>
-                            <template v-else>
-                                <img v-bind:src='project.covers.original' alt="project.name">
-                            </template>
-                            <div class="project-hover">
-                                <h5>{{ project.name }}</h5>
-                            </div>
-                            <!-- / project hover -->
-                        </a>
+                    <li class="project" v-for="project in projects" v-on:click="showModal(project.id)">
+                        <template v-if="project.covers[404]">
+                            <img v-bind:src='project.covers[404]' alt="project.name">
+                        </template>
+                        <template v-else>
+                            <img v-bind:src='project.covers.original' alt="project.name">
+                        </template>
+                        <div class="project-hover">
+                            <h5>{{ project.name }}</h5>
+                        </div>
+                        <!-- / project hover -->
                     </li>
                 </ul>
             </div>
             <!-- / projects -->
+
+            <ProjectDetails></ProjectDetails>
 
         </div>
         <!-- / holder -->
@@ -56,10 +56,11 @@
 
 <script>
 import Banner from './Banner'
+import ProjectDetails from './ProjectDetails'
 export default {
     name: 'designer',
     components: {
-        Banner
+        Banner, ProjectDetails
     },
     props: ['username'],
     data() {
@@ -68,7 +69,7 @@ export default {
             designerFields: [],
             projects: [],
             sections: [],
-            showModal: false
+            projectID: ''
         }
     },
     methods: {
@@ -87,6 +88,15 @@ export default {
                 .then(response => {
                     this.projects = response.body.projects;
                 });
+        },
+        showModal: function(projectID) {
+
+            console.log(projectID)
+        },
+        watch: {
+            projectId: function(val) {
+                this.getProjectDetails(val)
+            }
         }
     },
     created: function() {
@@ -130,6 +140,7 @@ export default {
 
 .project {
     position: relative;
+    cursor: pointer;
 }
 
 .project-hover {

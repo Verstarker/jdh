@@ -36,10 +36,18 @@
                 <div class="social-media">
                     <h4>Also find us at:</h4>
                     <div class="social-media-icons">
-                        <span class="mdi mdi-facebook"></span>
-                        <span class="mdi mdi-twitter"></span>
-                        <span class="mdi mdi-instagram"></span>
-                        <span class="mdi mdi-linkedin"></span>
+                        <a href="#" target="_blank">
+                            <span class="mdi mdi-facebook"></span>
+                        </a>
+                        <a href="#" target="_blank">
+                            <span class="mdi mdi-twitter"></span>
+                        </a>
+                        <a href="#" target="_blank">
+                            <span class="mdi mdi-instagram"></span>
+                        </a>
+                        <a href="#" target="_blank">
+                            <span class="mdi mdi-linkedin"></span>
+                        </a>
                     </div><!-- / social media icons -->
                 </div><!-- / social media -->
             </div><!-- / holder -->
