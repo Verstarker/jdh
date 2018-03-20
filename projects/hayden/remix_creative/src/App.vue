@@ -92,12 +92,19 @@ a {
     text-decoration: none;
 }
 
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+}
+
+p {
+    font-family: 'IBM Plex Serif', Helvetica, Arial, sans-serif;
+}
+
 a:hover {
     color: #292929;
 }
 
 #app {
-    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -124,6 +131,7 @@ nav {
 nav a {
     font-size: 30px;
     margin: 1.2em 1em;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
 .holder {

@@ -6,7 +6,7 @@
             <h2>{{ designer.display_name }}</h2>
             <div class="designer-info">
                 <div class="designer-photo">
-                    <img v-bind:src="designer.images[276]" alt="designer.first_name">
+                    <img v-bind:src="designer.images[276]" alt="designer.display_name">
                 </div>
                 <!-- / designer photo -->
                 <div class="designer-about-me">
@@ -47,7 +47,7 @@
             </div>
             <!-- / projects -->
 
-            <ProjectDetails></ProjectDetails>
+            <ProjectDetails v-bind:projectID="projectID"></ProjectDetails>
 
         </div>
         <!-- / holder -->
@@ -69,7 +69,7 @@ export default {
             designerFields: [],
             projects: [],
             sections: [],
-            projectID: ''
+            projectID: '',
         }
     },
     methods: {
@@ -90,13 +90,9 @@ export default {
                 });
         },
         showModal: function(projectID) {
-
+            this.projectID = projectID;
+            $('.modal-mask').css('display', 'flex');
             console.log(projectID)
-        },
-        watch: {
-            projectId: function(val) {
-                this.getProjectDetails(val)
-            }
         }
     },
     created: function() {
@@ -105,12 +101,24 @@ export default {
 }
 </script>
 <!-- styling for the component -->
-<style>
+<style scoped>
+
+li {
+    font-size: 0;
+}
 
 .designer-info {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-column-gap: 1em;
+}
+
+.designer-photo {
+    padding: 0 20px;
+}
+
+.designer-photo img {
+    width: 100%;
 }
 
 .designer-about-me {
