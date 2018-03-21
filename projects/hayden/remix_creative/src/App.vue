@@ -85,6 +85,7 @@ html {
 body { 
     background: -webkit-linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
     background: linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
+    font-family: 'IBM Plex Serif', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -94,10 +95,6 @@ a {
 
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-}
-
-p {
-    font-family: 'IBM Plex Serif', Helvetica, Arial, sans-serif;
 }
 
 a:hover {

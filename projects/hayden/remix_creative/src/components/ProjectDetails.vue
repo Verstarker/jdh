@@ -1,33 +1,50 @@
 <template>
-    <div class="modal-mask" v-on:click="closeModal()">
+    <div class="modal-mask">
+        <span class="mdi mdi-close-circle-outline" v-on:click="closeModal()"></span>
         <div id="modal">
             <slot name="header">
-                <h2>{{projectDetails.name}}</h2>
-                <div class="author">
-                    <img src="" alt="">
-                    <h3>Created By:<br>{{ projectDetails.owners[0].display_name }}</h3>
-                </div><!-- / author -->
+                <div class="heading">
+                    <h2>{{projectDetails.name}}</h2>
+                    <div class="author">
+                        <img v-bind:src="projectDetails.owners[0].images[138]" alt="">
+                        <h3 v-if="projectDetails.owners[0].display_name">Created By:<br>{{ projectDetails.owners[0].display_name }}</h3>
+                    </div>
+                    <!-- / author -->
+                </div>
             </slot>
-         <slot name="body">
-            <div class="project-content">
-                <div class="project-works" v-for="mod in projectDetails.modules">
-                    <template v-if="mod.type = 'text'">
-                        <img v-bind:src="mod.sizes.original" alt="">
-                    </template>
-                    <template v-else>
-                        
-                    </template>
-                </div><!-- / project works -->
-                <div class="project-info">
-                    <div class="project-stats" v-for="projectStat in projectDetails.stats">
-                        {{ projectStat }}<br>
-                    </div><!-- / project stats -->
-                    <div class="project-description">
-                        {{ projectDetails.description }}
-                    </div><!-- / project description -->
-                </div><!-- / project info -->
-            </div><!-- / project content -->
-         </slot>
+            <slot name="body">
+                <div class="project">
+                    <div class="project-content">
+                        <div class="project-works" v-for="mod in projectDetails.modules">
+                            <template v-if="mod.sizes">
+                                <img v-bind:src="mod.sizes.max_1240" alt="">
+                            </template>
+                            <template v-else>
+                                <p v-html="mod.text"></p>
+                            </template>
+                        </div>
+                        <!-- / project works -->
+                    </div>
+                    <!-- / project content -->
+                    <div class="project-info">
+                        <h3>Stats</h3>
+                        <div class="project-stats" v-for="projectStat in projectDetails.stats">
+                            {{ projectStat }}<br>
+                        </div>
+                        <!-- / project stats -->
+                        <div class="published">
+                            <p>Published on {{ projectDetails.published_on }}</p>
+                        </div>
+                        <!-- / published -->
+                        <div class="project-description" v-if="projectDetails.description">
+                            <h3>Description</h3>
+                            <p>{{ projectDetails.description }}</p>
+                        </div>
+                        <!-- / project description -->
+                    </div>
+                    <!-- / project info -->
+                </div>
+            </slot>
         </div>
         <!-- / modal -->
     </div>
@@ -46,10 +63,9 @@ export default {
     methods: {
         getProjectDetails: function(projectID) {
             this.$http.jsonp('http://behance.net/v2/projects/' + projectID + '?api_key=ddao6kwQUp8x90o1u1uk8Lt82md8thrX')
-            .then(response => {
-                this.projectDetails = response.body.project;
-                console.log(response.body.project.stats)
-            });
+                .then(response => {
+                    this.projectDetails = response.body.project;
+                });
         },
         created: function() {
             this.getProjectDetails(this.projectID);
@@ -62,31 +78,78 @@ export default {
     watch: {
         projectID: function(projectID) {
             this.getProjectDetails(projectID)
+            //console.log(this.projectDetails)
         }
     }
 }
 </script>
 
 <style scoped>
-    .modal-mask {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, .5);
-        transition: all .5s ease;
-    }
+.modal-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .5);
+    transition: all .5s ease;
+}
 
-    #modal {
-        background: #fff;
-        max-width: 1200px;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,.33);
-        color: #292929;
-    }
+.modal-mask span {
+    position: absolute;
+    top: 45px;
+    right: 110px;
+    font-size: 60px;
+    /*color: #fff;*/
+    cursor: pointer;
+}
+
+#modal {
+    position: relative;
+    background: #fff;
+    max-width: 1500px;
+    max-height: calc(100vh - 100px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    color: #292929;
+    overflow-y: auto;
+}
+
+.heading, .project {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.heading {
+    border-bottom: 1px solid #292929;
+}
+
+.author {
+    padding: 0;
+}
+
+.author img {
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.project-content {
+    border-right: 1px solid #292929;
+    padding: 0 30px;
+}
+
+.project img {
+    width: 100%;
+}
+
+.project-info {
+    padding: 20px 30px;
+    text-align: left;
+}
+
+.project-info p {
+    font-size: 12px;
+}
 </style>

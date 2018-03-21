@@ -92,7 +92,7 @@ export default {
         showModal: function(projectID) {
             this.projectID = projectID;
             $('.modal-mask').css('display', 'flex');
-            console.log(projectID)
+            //console.log(projectID)
         }
     },
     created: function() {
@@ -123,6 +123,10 @@ li {
 
 .designer-about-me {
     text-align: left;
+}
+
+.designer-about-me span:last-child {
+    display: none;
 }
 
 .projects {

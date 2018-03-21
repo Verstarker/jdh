@@ -3,28 +3,27 @@
         <Banner></Banner>
 
         <div class="holder">
+            <h2>Here's some of the stuff we do</h2>
             <div class="projects">
                 <ul class="projects-list">
-                    <li class="project" v-for="project in projects.slice(12)">
-                        <a v-bind:href="project.url" target="_blank">
-                            <template v-if="project.covers[404]">
-                                <img v-bind:src='project.covers[404]' alt="project.name">
-                            </template>
-                            <template v-else>
-                                <img v-bind:src='project.covers.original' alt="project.name">
-                            </template>
-                            <div class="project-hover">
-                                <h5>{{ project.name }}</h5>
-                                <template v-for="field in fields">
-                                    {{ field }}<span>, </span>
-                                </template>
-                            </div>
-                            <!-- / project hover -->
-                        </a>
+                    <li class="project" v-for="project in projects.slice(0, 12)"  v-on:click="showModal(project.id)">
+                        <template v-if="project.covers[404]">
+                            <img v-bind:src='project.covers[404]' alt="project.name">
+                        </template>
+                        <template v-else>
+                            <img v-bind:src='project.covers.original' alt="project.name">
+                        </template>
+                        <div class="project-hover">
+                            <h5>{{ project.name }}</h5>
+                        </div>
+                        <!-- / project hover -->
                     </li>
                 </ul>
             </div>
             <!-- / projects -->
+
+            <ProjectDetails v-bind:projectID="projectID"></ProjectDetails>
+
         </div>
         <!-- / holder -->
     </div>
@@ -33,30 +32,36 @@
 
 <script>
 import Banner from './Banner'
+import ProjectDetails from './ProjectDetails'
 export default {
     name: 'home',
     data() {
         return {
             projects: [],
-            users: ['mattharvey', 'vitorugo', 'rafaeldraws', 'stanleysun'],
-            fields: []
+            users: ['mattharvey', 'vitorugo', 'rafaeldraws', 'genevieveg3dd5'],
+            projectID: ''
         }
     },
     components: {
-        Banner
+        Banner, ProjectDetails
     },
     methods: {
         getProjects: function() {
-            this.$http.jsonp('http://behance.net/v2/users/mattharvey/projects?api_key=ddao6kwQUp8x90o1u1uk8Lt82md8thrX')
+            var randomIndex = Math.floor(Math.random()*this.users.length);
+            this.$http.jsonp('http://behance.net/v2/users/' + this.users[randomIndex] + '/projects?api_key=ddao6kwQUp8x90o1u1uk8Lt82md8thrX')
                 .then(response => {
                     this.projects = response.body.projects;
-                    this.fields = response.body.projects.fields;
                     this.shuffleArray(this.projects);
                 });
         },
         shuffleArray: function(array) {
             var shuffle = require('shuffle-array');
             shuffle(array);
+        },
+        showModal: function(projectID) {
+            this.projectID = projectID;
+            $('.modal-mask').css('display', 'flex');
+            //console.log(projectID)
         }
     },
     created: function() {
@@ -98,7 +103,7 @@ li {
 }
 
 .projects {
-    margin-top: 70px;
+    margin: 70px 0;
 }
 
 .projects-list {
@@ -119,6 +124,7 @@ li {
 
 .project {
     position: relative;
+    cursor: pointer;
 }
 
 .project-hover {
@@ -128,6 +134,9 @@ li {
     width: 70%;
     color: #292929;
     border-radius: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .5s ease, opacity .5 ease;
 }
 
 .project-hover h5,
@@ -141,5 +150,7 @@ li {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
 }
 </style>
