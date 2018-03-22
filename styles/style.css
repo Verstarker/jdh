@@ -135,13 +135,13 @@ a {
 }
 
 .joel .gradient-mask {
-    background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(127, 38, 31, 0.5));
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(127, 38, 31, 0.5));
+    background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(56, 95, 140, 0.5));
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(56, 95, 140, 0.5));
 }
 
 .joel .gradient-mask:after {
-    background: -webkit-linear-gradient(90deg, rgba(127, 38, 31, 0.8), rgba(127, 38, 31, 0.8));
-    background: linear-gradient(90deg, rgba(127, 38, 31, 0.8), rgba(127, 38, 31, 0.8));
+    background: -webkit-linear-gradient(90deg, rgba(56, 95, 140, 0.8), rgba(56, 95, 140, 0.8));
+    background: linear-gradient(90deg, rgba(56, 95, 140, 0.8), rgba(56, 95, 140, 0.8));
 }
 
 .gradient-mask:hover:after {
