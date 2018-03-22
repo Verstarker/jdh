@@ -11,10 +11,10 @@
       <div class="social-media-footer">
         <h1 class="footer-header">Find us</h1>
         <div class="social-media-links">
-          <a href="http://www.facebook.com"><img class="social-logo" src="../assets/facebook-logo.png"></a>
-          <a href="http://www.twitter.com"><img class="social-logo" src="../assets/twitter-logo.png"></a>
-          <a href="http://www.behance.net"><img class="social-logo" src="../assets/behance-logo.png"></a>
-          <a href="http://www.youtube.com"><img class="social-logo" src="../assets/youtube-logo.png"></a>
+          <a href="http://www.facebook.com" target="_blank"><img class="social-logo" src="../assets/facebook-logo.png"></a>
+          <a href="http://www.twitter.com" target="_blank"><img class="social-logo" src="../assets/twitter-logo.png"></a>
+          <a href="http://www.behance.net" target="_blank"><img class="social-logo" src="../assets/behance-logo.png"></a>
+          <a href="http://www.youtube.com" target="_blank"><img class="social-logo" src="../assets/youtube-logo.png"></a>
         </div>
       </div>
     </div>

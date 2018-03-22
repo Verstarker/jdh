@@ -23,12 +23,13 @@
                 <p class="project-field">{{ project.fields[0] }}</p>
             </div>
         </div>
-        <div v-if="projectOwnerStats" class="details-container">
-            <p>Followers: {{ projectOwnerStats.followers }}</p>
-            <p>Following: {{ projectOwnerStats.following }}</p>
-            <p>Appreciations: {{ projectOwnerStats.appreciations }}</p>
-            <p>Views: {{ projectOwnerStats.views }}</p>
-            <p>Comments: {{ projectOwnerStats.comments }}</p>
+        <div class="details-container">
+            <p class="details-text">Behance: <a class="behance-link" v-on:click="setBehanceURL(ownerBehance)" target="_blank">{{ ownerBehance }}</a></p>
+            <p class="details-text">Followers: {{ projectOwnerStats.followers }}</p>
+            <p class="details-text">Following: {{ projectOwnerStats.following }}</p>
+            <p class="details-text">Appreciations: {{ projectOwnerStats.appreciations }}</p>
+            <p class="details-text">Views: {{ projectOwnerStats.views }}</p>
+            <p class="details-text">Comments: {{ projectOwnerStats.comments }}</p>
         </div>
         <modal v-bind:projectID="projectID"></modal>
     </div>
@@ -46,7 +47,8 @@ export default {
             projectID: '',
             designerLocation: '',
             projects: [],
-            projectOwnerStats: []
+            projectOwnerStats: [],
+            ownerBehance: ''
         }
     },
     components: {
@@ -60,7 +62,8 @@ export default {
                     this.designerName = this.projects[0].owners[0].display_name;
                     this.designerLocation = this.projects[0].owners[0].location;
                     this.designerFields = this.projects[0].owners[0].fields;
-                    this.projectOwnerStats = this.projects[0].owners[0].stats
+                    this.projectOwnerStats = this.projects[0].owners[0].stats;
+                    this.ownerBehance = this.projects[0].owners[0].url;
                     $('.designer-pic').attr('src', this.projects[0].owners[0].images[138])
                 });
         },
@@ -79,6 +82,9 @@ export default {
             $('.details-container').css('display', 'block');
             $('.details-header').addClass('active');
             $('.projects-header').removeClass('active');
+        },
+        setBehanceURL: function (ownerBehance) {
+            $('.behance-link').attr('href', ownerBehance)
         }
     },
     created: function(username) {
@@ -202,8 +208,18 @@ h1 {
     padding-top: 100px;
     font-size: 35px;
     text-align: left;
-    width: 350px;
+    width: 850px;
     margin: auto;
+}
+
+.details-text {
+    padding-bottom: 10px;
+}
+
+.behance-link {
+    text-decoration: underline;
+    color: #2B3D4E;
+    cursor: pointer;
 }
 
 .project:hover .project-image {
