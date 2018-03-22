@@ -1,6 +1,5 @@
 <template>
     <div class="about">
-        <Banner></Banner>
 
         <div class="holder">
             <h2>Who are we?</h2>
@@ -10,7 +9,9 @@
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque tenetur doloribus nulla? Tempora sit repellat a impedit pariatur repudiandae distinctio error iure! Magni facilis soluta iste minus minima doloribus praesentium!</p>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque tenetur doloribus nulla? Tempora sit repellat a impedit pariatur repudiandae distinctio error iure! Magni facilis soluta iste minus minima doloribus praesentium!</p>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque tenetur doloribus nulla? Tempora sit repellat a impedit pariatur repudiandae distinctio error iure! Magni facilis soluta iste minus minima doloribus praesentium!</p>
-                    <router-link v-bind:to="'/designers/'">Check out who exactly we are!</router-link>
+                    <h3>
+                        <router-link v-bind:to="'/designers/'">Check out who exactly we are!</router-link>
+                    </h3>
                 </div>
                 <!-- / about text -->
                 <img src="../assets/remix-group.png" alt="">
@@ -25,10 +26,7 @@
 <script>
 import Banner from './Banner'
 export default {
-    name: 'about',
-    components: {
-        Banner
-    },
+    name: 'about'
 }
 </script>
 <!-- styling for the component -->

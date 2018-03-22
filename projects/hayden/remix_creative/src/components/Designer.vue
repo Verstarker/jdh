@@ -1,6 +1,5 @@
 <template>
     <div class="designer-page">
-        <Banner></Banner>
 
         <div class="holder">
             <h2>{{ designer.display_name }}</h2>
@@ -10,11 +9,12 @@
                 </div>
                 <!-- / designer photo -->
                 <div class="designer-about-me">
-                    <template v-for="section in sections">
+                    <template v-for="(section, key) in sections">
+                        <h3>{{ key }}</h3>
                         <p>{{ section }}</p>
                     </template>
                     <h3>Fields</h3>
-                    <template v-for="designerField in designerFields">
+                    <template class="fields" v-for="designerField in designerFields">
                         {{ designerField }}<span>, </span>
                     </template>
                     <h3>Stats</h3>
@@ -23,6 +23,36 @@
                     <p>Appreciations: {{ designer.stats.appreciations }}</p>
                     <p>Views: {{ designer.stats.views }}</p>
                     <p>Comments: {{ designer.stats.comments }}</p>
+                    <template v-if="designer.website">
+                        <h3>Website</h3>
+                        <a href="designer.website" target="_blank">{{ designer.website }}</a>
+                    </template>
+                    <template v-if="socialLinks">
+                        <div class="social-links">
+                            <template  v-for="socialLink in socialLinks">
+                                <a v-bind:href="socialLink.url" target="_blank">
+                                    <template v-if="socialLink.service_name === 'Facebook'">
+                                        <span class="mdi mdi-facebook"></span>
+                                    </template>
+                                    <template v-if="socialLink.service_name === 'Twitter'">
+                                        <span class="mdi mdi-twitter"></span>
+                                    </template>
+                                    <template v-if="socialLink.service_name === 'Instagram'">
+                                        <span class="mdi mdi-instagram"></span>
+                                    </template>
+                                    <template v-if="socialLink.service_name === 'LinkedIn'">
+                                        <span class="mdi mdi-linkedin"></span>
+                                    </template>
+                                    <template v-if="socialLink.service_name === 'Tumblr'">
+                                        <span class="mdi mdi-tumblr"></span>
+                                    </template>
+                                    <template v-if="socialLink.service_name === 'Vimeo'">
+                                        <span class="mdi mdi-vimeo"></span>
+                                    </template>
+                                </a>
+                            </template>
+                        </div><!-- / social links -->
+                    </template>
                 </div>
                 <!-- / designer about me -->
             </div>
@@ -47,7 +77,9 @@
             </div>
             <!-- / projects -->
 
-            <ProjectDetails v-bind:projectID="projectID"></ProjectDetails>
+            <transition name="fade">
+                <ProjectDetails v-bind:projectID="projectID"></ProjectDetails>
+            </transition>
 
         </div>
         <!-- / holder -->
@@ -55,12 +87,11 @@
 </template>
 
 <script>
-import Banner from './Banner'
 import ProjectDetails from './ProjectDetails'
 export default {
     name: 'designer',
     components: {
-        Banner, ProjectDetails
+        ProjectDetails
     },
     props: ['username'],
     data() {
@@ -70,6 +101,7 @@ export default {
             projects: [],
             sections: [],
             projectID: '',
+            socialLinks: []
         }
     },
     methods: {
@@ -79,6 +111,7 @@ export default {
                     this.designer = response.body.user;
                     this.sections = response.body.user.sections;
                     this.designerFields = response.body.user.fields;
+                    this.socialLinks = response.body.user.social_links;
                     //console.log(JSON.stringify(this.designer))
                     this.getUserProjects();
                 });
@@ -105,6 +138,7 @@ export default {
 
 li {
     font-size: 0;
+    margin: 0;
 }
 
 .designer-info {
@@ -125,8 +159,25 @@ li {
     text-align: left;
 }
 
-.designer-about-me span:last-child {
+.fields span:last-child {
     display: none;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-links span {
+    background-color: #fff;
+    color: #292929;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 30px;
 }
 
 .projects {
@@ -177,4 +228,11 @@ li {
     transform: translate(-50%, -50%);
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>

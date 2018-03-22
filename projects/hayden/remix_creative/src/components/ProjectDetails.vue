@@ -5,45 +5,43 @@
             <slot name="header">
                 <div class="heading">
                     <h2>{{projectDetails.name}}</h2>
-                    <div class="author">
+                </div><!-- / heading -->
+                <div class="author" v-on:click="closeModal()">
+                    <router-link v-bind:to="'/designers/' + projectDetails.owners[0].username">
                         <img v-bind:src="projectDetails.owners[0].images[138]" alt="">
                         <h3 v-if="projectDetails.owners[0].display_name">Created By:<br>{{ projectDetails.owners[0].display_name }}</h3>
-                    </div>
-                    <!-- / author -->
+                    </router-link>
                 </div>
+                <!-- / author -->
             </slot>
             <slot name="body">
-                <div class="project">
-                    <div class="project-content">
-                        <div class="project-works" v-for="mod in projectDetails.modules">
-                            <template v-if="mod.sizes">
-                                <img v-bind:src="mod.sizes.max_1240" alt="">
-                            </template>
-                            <template v-else>
-                                <p v-html="mod.text"></p>
-                            </template>
-                        </div>
-                        <!-- / project works -->
+                <div class="project-content">
+                    <div class="project-works" v-for="mod in projectDetails.modules">
+                        <template v-if="mod.sizes">
+                            <img v-bind:src="mod.sizes.max_1240" alt="">
+                        </template>
+                        <template v-else>
+                            <p v-html="mod.text"></p>
+                        </template>
                     </div>
-                    <!-- / project content -->
-                    <div class="project-info">
-                        <h3>Stats</h3>
-                        <div class="project-stats" v-for="projectStat in projectDetails.stats">
-                            {{ projectStat }}<br>
-                        </div>
-                        <!-- / project stats -->
-                        <div class="published">
-                            <p>Published on {{ projectDetails.published_on }}</p>
-                        </div>
-                        <!-- / published -->
-                        <div class="project-description" v-if="projectDetails.description">
-                            <h3>Description</h3>
-                            <p>{{ projectDetails.description }}</p>
-                        </div>
-                        <!-- / project description -->
-                    </div>
-                    <!-- / project info -->
+                    <!-- / project works -->
                 </div>
+                <!-- / project content -->
+                <div class="project-info">
+                    <h3>Stats</h3>
+                    <div class="project-stats">
+                        <template v-for="(projectStat, key) in projectDetails.stats">
+                            {{ key }}: {{ projectStat }}<br>
+                        </template>
+                    </div>
+                    <!-- / project stats -->
+                    <div class="project-description" v-if="projectDetails.description">
+                        <h3>Description</h3>
+                        <p>{{ projectDetails.description }}</p>
+                    </div>
+                    <!-- / project description -->
+                </div>
+                <!-- / project info -->
             </slot>
         </div>
         <!-- / modal -->
@@ -78,7 +76,7 @@ export default {
     watch: {
         projectID: function(projectID) {
             this.getProjectDetails(projectID)
-            //console.log(this.projectDetails)
+            //console.log(this.projectDetails.stats)
         }
     }
 }
@@ -115,12 +113,12 @@ export default {
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     color: #292929;
     overflow-y: auto;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1100px 1fr;
+    grid-template-rows: 250px 1fr;
 }
 
-.heading, .project {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-}
 
 .heading {
     border-bottom: 1px solid #292929;
@@ -128,6 +126,10 @@ export default {
 
 .author {
     padding: 0;
+}
+
+.author a {
+    color: #292929;
 }
 
 .author img {
@@ -138,9 +140,10 @@ export default {
 .project-content {
     border-right: 1px solid #292929;
     padding: 0 30px;
+    overflow: auto;
 }
 
-.project img {
+.project-works img {
     width: 100%;
 }
 
@@ -149,7 +152,19 @@ export default {
     text-align: left;
 }
 
+.project-stats {
+    text-transform: capitalize;
+}
+
 .project-info p {
     font-size: 12px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

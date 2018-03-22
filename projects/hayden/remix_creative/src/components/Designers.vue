@@ -1,6 +1,5 @@
 <template>
     <div class="our-people">
-        <Banner></Banner>
 
         <div class="holder">
             <div class="designers">
@@ -22,7 +21,6 @@
 </template>
 
 <script>
-import Banner from './Banner'
 export default {
     name: 'designers',
     data() {
@@ -30,9 +28,6 @@ export default {
             designers: []
             //users: ['mattharvey', 'vitorugo', 'rafaeldraws', 'stanleysun']
         }
-    },
-    components: {
-        Banner
     },
     methods: {
         getDesigners: function() {

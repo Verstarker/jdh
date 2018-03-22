@@ -2,9 +2,9 @@
     <div id="app">
         <header>
             <div class="logo">
-                <a href="#">
+                <router-link v-bind:to="'/'">
                     <img src="./assets/remix-creative-logo.png" alt="">
-                </a>
+                </router-link>
             </div>
             <!-- / logo -->
             <nav>
@@ -14,8 +14,12 @@
             </nav>
         </header>
 
+        <Banner></Banner>
+
         <div id="page">
-            <router-view></router-view>
+            <transition name="fade">
+                <router-view></router-view>
+            </transition>
         </div>
         <!-- / page -->
 
@@ -58,6 +62,7 @@
 
 <script>
 
+import Banner from 'components/Banner'
 export default {
     name: 'app',
     data() {
@@ -66,23 +71,21 @@ export default {
             email: 'hello@remixcreative.co.nz',
             address: '7 Hindess St, Christchurch 8025'
         }
+    },
+    components: {
+        Banner
     }
 }
 </script>
 <!-- styling for the component -->
 <style>
-body {
-    margin: 0;
-    /*
-  background: -webkit-linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
-  background: linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
-  */
-}
+
 html {
     background: #355c7d;
 }
 
 body { 
+    margin: 0;
     background: -webkit-linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
     background: linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
     font-family: 'IBM Plex Serif', Helvetica, Arial, sans-serif;
@@ -168,5 +171,12 @@ footer .holder {
 .social-media-icons span:hover {
     background: #eee;
     color: #292929;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

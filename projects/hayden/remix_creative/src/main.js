@@ -8,7 +8,7 @@ import App from './App'
 import VueRouter from 'vue-router'
 //import the vue resource
 import VueResource from 'vue-resource'
-//imoprt the vue pagination
+//import the vue pagination
 import VuePaginate from 'vuejs-paginate'
 
 

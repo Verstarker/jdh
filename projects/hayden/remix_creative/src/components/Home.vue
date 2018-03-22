@@ -1,6 +1,5 @@
 <template>
     <div class="home">
-        <Banner></Banner>
 
         <div class="holder">
             <h2>Here's some of the stuff we do</h2>
@@ -31,7 +30,7 @@
 </template>
 
 <script>
-import Banner from './Banner'
+
 import ProjectDetails from './ProjectDetails'
 export default {
     name: 'home',
@@ -43,7 +42,7 @@ export default {
         }
     },
     components: {
-        Banner, ProjectDetails
+        ProjectDetails
     },
     methods: {
         getProjects: function() {
