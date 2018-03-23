@@ -92,4 +92,16 @@ li {
 .designer img {
     border-radius: 50%;
 }
+
+@media only screen and (max-width: 1240px){
+    .designer-list {
+        grid-template-columns: 2fr 2fr
+    }
+}
+
+@media only screen and (max-width: 640px){
+    .designer-list {
+        grid-template-columns: 1fr
+    }
+}
 </style>

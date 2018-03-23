@@ -52,7 +52,7 @@
 <script>
 export default {
     name: 'project-details',
-    props: ['projectID'],
+    props: ['projectID', 'isShowModal'],
     data() {
         return {
             projectDetails: []
@@ -70,13 +70,14 @@ export default {
         },
         closeModal: function() {
             this.projectID = '';
-            $('.modal-mask').css('display', 'none');
+            this.isShowModal = false;
+            $('.modal-mask').css('display', 'none')
         }
     },
     watch: {
         projectID: function(projectID) {
             this.getProjectDetails(projectID)
-            //console.log(this.projectDetails.stats)
+
         }
     }
 }
@@ -84,7 +85,7 @@ export default {
 
 <style scoped>
 .modal-mask {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -99,7 +100,7 @@ export default {
 .modal-mask span {
     position: absolute;
     top: 45px;
-    right: 110px;
+    right: 55px;
     font-size: 60px;
     /*color: #fff;*/
     cursor: pointer;
@@ -115,7 +116,7 @@ export default {
     overflow-y: auto;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: 1100px 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: 250px 1fr;
 }
 

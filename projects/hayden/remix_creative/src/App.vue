@@ -1,17 +1,26 @@
 <template>
-    <div id="app">
-        <header>
+    <div id="app" v-bind:class="{'mobile-nav-active': isMobile}">
+        <nav class="mobile-nav">
+            <header v-on:click="displayMobileMenu()">Close <span class="mdi mdi-close"></span></header>
+            <router-link v-bind:to="'/'">Home</router-link>
+            <router-link v-bind:to="'/designers'">Our Designers</router-link>
+            <router-link v-bind:to="'/about'">About</router-link>
+        </nav>
+        <header class="main-header">
             <div class="logo">
                 <router-link v-bind:to="'/'">
                     <img src="./assets/remix-creative-logo.png" alt="">
                 </router-link>
             </div>
             <!-- / logo -->
-            <nav>
+            <nav class="main-nav">
                 <router-link v-bind:to="'/'">Home</router-link>
                 <router-link v-bind:to="'/designers'">Our Designers</router-link>
                 <router-link v-bind:to="'/about'">About</router-link>
             </nav>
+            <aside class="mobile-nav-trigger" v-on:click="displayMobileMenu()">
+                <span class="mdi mdi-menu"></span>
+            </aside>
         </header>
 
         <Banner></Banner>
@@ -69,11 +78,17 @@ export default {
         return {
             ph: '03-366-6666',
             email: 'hello@remixcreative.co.nz',
-            address: '7 Hindess St, Christchurch 8025'
+            address: '7 Hindess St, Christchurch 8025',
+            isMobile: false
         }
     },
     components: {
         Banner
+    },
+    methods: {
+        displayMobileMenu: function() {
+            this.isMobile = !this.isMobile
+        }
     }
 }
 </script>
@@ -104,6 +119,10 @@ a:hover {
     color: #292929;
 }
 
+a, a:hover {
+    transition: all 0.3s linear;
+}
+
 #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -111,18 +130,57 @@ a:hover {
     color: #fff;
 }
 
-header {
+.main-header {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-column-gap: 1em;
     padding: 10px 30px;
 }
 
-header .logo {
+.main-header .logo {
     font-size: 0;
 }
 
-nav {
+.mobile-nav {
+    display: none;
+    width: 350px;
+    position: fixed;
+    left: -350px;
+    top: 0; 
+    bottom: 0; 
+    right: 0;
+    height: 100%; 
+    overflow: auto; 
+    background-color: #355c7d;
+    transition: left .2s ease; 
+    z-index: 3000; 
+}
+
+.mobile-nav header {
+    color: #fff; 
+    font-size: 20px; 
+    text-transform: uppercase; 
+    cursor: pointer;
+    padding: 10px;
+}
+
+.mobile-nav a {
+    display: block; 
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.mobile-nav-active .mobile-nav {
+    left: 0;
+    display: block;
+}
+
+.mobile-nav-trigger {
+    display: none;
+}
+
+.main-nav {
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -137,10 +195,12 @@ nav a {
 .holder {
     max-width: 1500px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 footer {
     border-top: 1px solid #fff;
+    padding: 0 20px;
 }
 
 footer .holder {
@@ -179,4 +239,21 @@ footer .holder {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+@media only screen and (max-width: 1024px) {
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-nav-trigger {
+        display: block; 
+        position: absolute; 
+        top: 45px;
+        right: 30px; 
+        font-size: 40px; 
+        cursor: pointer; 
+        color: #fff;
+    }
+}
+
 </style>

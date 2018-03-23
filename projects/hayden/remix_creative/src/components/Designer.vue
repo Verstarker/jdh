@@ -78,7 +78,7 @@
             <!-- / projects -->
 
             <transition name="fade">
-                <ProjectDetails v-bind:projectID="projectID"></ProjectDetails>
+                <ProjectDetails v-bind:projectID="projectID" v-bind:isShowModal="isShowModal"></ProjectDetails>
             </transition>
 
         </div>
@@ -101,7 +101,8 @@ export default {
             projects: [],
             sections: [],
             projectID: '',
-            socialLinks: []
+            socialLinks: [],
+            isShowModal: false
         }
     },
     methods: {
@@ -124,8 +125,8 @@ export default {
         },
         showModal: function(projectID) {
             this.projectID = projectID;
-            $('.modal-mask').css('display', 'flex');
-            //console.log(projectID)
+            this.isShowModal = true;
+            $('.modal-mask').css('display', 'flex')
         }
     },
     created: function() {
@@ -235,4 +236,32 @@ li {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
+@media only screen and (max-width: 1340px){
+    .projects-list {
+        grid-template-columns: repeat(4, 4fr);
+    }
+}
+
+@media only screen and (max-width: 950px){
+    .projects-list {
+        grid-template-columns: repeat(3, 3fr);
+    }
+}
+
+@media only screen and (max-width: 700px){
+    .projects-list {
+        grid-template-columns: repeat(2, 2fr);
+    }
+    .designer-info {
+        grid-template-columns: 1fr
+    }
+}
+
+@media only screen and (max-width: 510px){
+    .projects-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 </style>
