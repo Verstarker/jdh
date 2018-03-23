@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="/css/prettydropdowns.css">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <header>
+        <nav role="navigation" class="main-nav js--main-nav">
+            <a class="main-nav-item" href="#">Home</a>
+            <a class="main-nav-item" href="#">About</a>
+            <a class="main-nav-item" href="#">Help</a>
+            <a class="main-nav-item" href="#">FAQ</a>
+            <a class="main-nav-item" href="#">Contact</a>
+        </nav>
+    </header>
+
+
+    <!--Test Map-->
+    <!--<table>
+        <tr>
+            <td>
+                <div id="map" style="width:100%; height:100%; border: 2px solid #3872ac;"></div>
+            </td>
+            <td>
+                <div id="directionsPanel"></div>
+            </td>
+        </tr>
+    </table>-->
+
+
+    <!--Real Map-->
+    <div id="map-canvas" class="map-frame"></div>
+    <div class="detail-box">
+        <div id="place-detail"></div>
+    </div>
+
+
+    <div class="option-menu">
+        <nav>
+            <select id="locations-dropdown">
+                <option value="atm">I want to Get Cash</option>
+                <option value="art_gallery">I want to See Art</option>
+                <option value="meal_takeaway">I want to Eat</option>
+                <option value="restaurant">I want to Dine</option>
+                <option value="bar">I want to Drink</option>
+                <option value="lodging hotel">I want to Sleep</option>
+                <option value="meal_takeaway">I want to Eat</option>
+                <option value="night_club">I want to Go Clubbing</option>
+                <option value="cafe">I want to Drink Coffee</option>
+            </select>
+        </nav>
+    </div>
+
+    <!--<div class="content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis metus, dignissim vehicula tortor ut, gravida
+            venenatis mauris. Maecenas vel nunc nec massa ultricies vehicula at varius lacus. Etiam nec risus ac risus condimentum
+            blandit. Phasellus ac maximus ligula. Praesent vitae velit id felis vehicula iaculis vel ut velit. Phasellus
+            sed nisi a turpis fringilla hendrerit ullamcorper at augue. Sed sed aliquam ipsum. Aenean metus felis, pharetra
+            eget vulputate ut, dictum eu lectus. In vulputate vulputate volutpat. Donec porttitor tellus elit. Suspendisse
+            vel leo vulputate mauris laoreet maximus. Nunc non odio laoreet, tristique ipsum eget, luctus metus. Maecenas
+            volutpat quam in fermentum sodales. Suspendisse gravida at nisl ut facilisis. Donec pulvinar iaculis nibh nec
+            vulputate. Suspendisse potenti. Nullam tempus rutrum enim vitae elementum. Vestibulum ante ipsum primis in faucibus
+            orci luctus et ultrices posuere cubilia Curae; Curabitur at vehicula sapien. In molestie ornare ante, sed tincidunt
+            ex. Sed ullamcorper ipsum sed augue pretium, vitae tempor ex posuere. Proin non imperdiet tortor. Proin a ligula
+            pulvinar, porta est eget, tempor metus. Nulla eget convallis magna. Donec at faucibus dui. Vivamus nec eleifend
+            dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean a mi rutrum,
+            tempus nibh interdum, mollis nisi. Curabitur vel neque nec est maximus mollis. Donec sit amet dolor at nisi vulputate
+            pretium eu ac ex. Aenean non dignissim dolor, sit amet interdum metus. Nunc mattis accumsan suscipit. Nulla consectetur
+            quam sed lectus vulputate rutrum. Pellentesque eu aliquet tortor. Nam ut quam at massa ultricies pulvinar. Nulla
+            vestibulum, diam non sodales convallis, ipsum nisi tempus felis, vitae fringilla sapien dui nec eros. Proin vel
+            scelerisque libero, nec commodo ipsum. Praesent fringilla, massa egestas accumsan blandit, ligula tellus efficitur
+            arcu, vel rhoncus massa ex a magna. Donec iaculis neque non felis volutpat convallis. Aliquam rutrum, mauris
+            sed porta iaculis, lacus ligula ullamcorper mi, quis semper massa neque eget est. Sed maximus enim at dolor sollicitudin
+            hendrerit. Suspendisse eu purus felis. In sed sem gravida, consequat mi a, facilisis justo. In eget efficitur
+            metus, vitae fermentum arcu. Donec velit tortor, porttitor vitae lacus ut, convallis dignissim tellus. Nulla
+            gravida bibendum felis eu egestas. Nulla efficitur tortor at elementum malesuada. Vivamus rhoncus euismod felis,
+            pharetra varius nisi sodales sed. Nam interdum condimentum leo non ullamcorper. Nam a porta diam. Morbi mattis
+            vulputate velit, non vestibulum tellus tincidunt et. Nullam risus arcu, vehicula sed commodo nec, malesuada eu
+            leo. Quisque metus augue, finibus scelerisque gravida sed, malesuada a nisl. Donec ac ultrices quam, at blandit
+            metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer
+            efficitur porta erat, sit amet viverra augue. Phasellus a felis vitae magna ultrices pulvinar sed a odio. Donec
+            lacus libero, interdum et consectetur non, dictum at magna. Duis tortor orci, laoreet vestibulum lobortis eget,
+            commodo quis sapien. Aliquam dictum viverra tempus. Fusce tincidunt lacus lectus, vitae mollis sapien posuere
+            vitae. Praesent accumsan leo metus, et sagittis dui ultricies eleifend. Nullam vehicula, nibh nec lacinia elementum,
+            eros nibh porta erat, vitae accumsan urna arcu id odio. Quisque vel turpis in augue malesuada vestibulum. Praesent
+            fermentum, est vitae mollis viverra, ante orci luctus nunc, sed viverra mauris libero viverra libero. Praesent
+            at dolor vitae sem placerat suscipit id non libero.</p>
+    </div>-->
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFdSvj86BhCAU7tmlncj7NpRWVl2yDMr8&libraries=places"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="/js/jquery.prettydropdowns.js"></script>
+    <script src="JS/main.js"></script>
+    <script src="JS/maps.js"></script>
+    <!--<script src="JS/testmap.js"></script>-->
+</body>
+
+</html>
