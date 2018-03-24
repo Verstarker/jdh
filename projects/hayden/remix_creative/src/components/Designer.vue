@@ -181,6 +181,11 @@ li {
     font-size: 30px;
 }
 
+.social-links span:hover {
+    background-color:#292929;
+    color: #fff;
+}
+
 .projects {
     margin: 150px 0 70px;
     border-top: 1px solid #fff;

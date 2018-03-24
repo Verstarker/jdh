@@ -1,6 +1,5 @@
 <template>
     <div class="modal-mask">
-        <span class="mdi mdi-close-circle-outline" v-on:click="closeModal()"></span>
         <div id="modal">
             <slot name="header">
                 <div class="heading">
@@ -45,6 +44,7 @@
             </slot>
         </div>
         <!-- / modal -->
+        <span class="mdi mdi-close-circle-outline" v-on:click="closeModal()"></span>
     </div>
     <!-- / modal mask-->
 </template>
@@ -85,7 +85,7 @@ export default {
 
 <style scoped>
 .modal-mask {
-    display: flex;
+    display: grid;
     position: fixed;
     top: 0;
     left: 0;
@@ -118,6 +118,7 @@ export default {
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 250px 1fr;
+    margin: 20px;
 }
 
 
@@ -167,5 +168,24 @@ export default {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+@media only screen and (max-width: 1840px){
+    .modal-mask span {
+        position: static;
+        font-size: 80px;
+        cursor: pointer;
+        margin: 0 30px;
+    }
+}
+
+@media only screen and (max-width: 1040px){
+    #modal {
+        grid-template-columns: 1fr;
+    }
+
+    #modal div:nth-of-type(4) {
+        order: 3
+    }
 }
 </style>

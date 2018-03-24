@@ -119,7 +119,7 @@ a:hover {
     color: #292929;
 }
 
-a, a:hover {
+a, a:hover, span {
     transition: all 0.3s linear;
 }
 
@@ -162,6 +162,7 @@ a, a:hover {
     text-transform: uppercase; 
     cursor: pointer;
     padding: 10px;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
 .mobile-nav a {
@@ -256,4 +257,28 @@ footer .holder {
     }
 }
 
+@media only screen and (max-width: 640px) {
+    .main-header {
+        grid-template-columns: 1fr
+    }
+
+    .main-header img {
+        width: 100%;
+    }
+
+    .mobile-nav-trigger {
+        position: inherit;
+        text-align: right;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    footer .holder {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info, .social-media {
+        text-align: center;
+    }
+}
 </style>

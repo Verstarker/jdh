@@ -50,4 +50,10 @@ export default {
 .about-text a {
     font-weight: 700;
 }
+
+@media only screen and (max-width: 740px){
+    .about-description {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
