@@ -1,7 +1,9 @@
 <template>
     <div id="app" v-bind:class="{'mobile-nav-active': isMobile}">
         <nav class="mobile-nav">
-            <header v-on:click="displayMobileMenu()">Close <span class="mdi mdi-close"></span></header>
+            <header v-on:click="displayMobileMenu()">Close
+                <span class="mdi mdi-close"></span>
+            </header>
             <router-link v-bind:to="'/'">Home</router-link>
             <router-link v-bind:to="'/designers'">Our Designers</router-link>
             <router-link v-bind:to="'/about'">About</router-link>
@@ -40,12 +42,14 @@
                         ph: {{ ph }}
                     </div>
                     <div class="email">
-                        email: <a href="#">{{ email }}</a>
+                        email:
+                        <a href="#">{{ email }}</a>
                     </div>
                     <div class="address">
                         address: {{ address }}
                     </div>
-                </div><!-- / contact info -->
+                </div>
+                <!-- / contact info -->
                 <div class="social-media">
                     <h4>Also find us at:</h4>
                     <div class="social-media-icons">
@@ -61,11 +65,15 @@
                         <a href="#" target="_blank">
                             <span class="mdi mdi-linkedin"></span>
                         </a>
-                    </div><!-- / social media icons -->
-                </div><!-- / social media -->
-            </div><!-- / holder -->
+                    </div>
+                    <!-- / social media icons -->
+                </div>
+                <!-- / social media -->
+            </div>
+            <!-- / holder -->
         </footer>
-    </div><!-- / app -->
+    </div>
+    <!-- / app -->
     <!-- / app -->
 </template>
 
@@ -94,12 +102,11 @@ export default {
 </script>
 <!-- styling for the component -->
 <style>
-
 html {
     background: #355c7d;
 }
 
-body { 
+body {
     margin: 0;
     background: -webkit-linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
     background: linear-gradient(180deg, rgb(246, 114, 128), rgb(53, 92, 125));
@@ -111,7 +118,12 @@ a {
     text-decoration: none;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
@@ -119,7 +131,9 @@ a:hover {
     color: #292929;
 }
 
-a, a:hover, span {
+a,
+a:hover,
+span {
     transition: all 0.3s linear;
 }
 
@@ -146,27 +160,27 @@ a, a:hover, span {
     width: 350px;
     position: fixed;
     left: -350px;
-    top: 0; 
-    bottom: 0; 
+    top: 0;
+    bottom: 0;
     right: 0;
-    height: 100%; 
-    overflow: auto; 
+    height: 100%;
+    overflow: auto;
     background-color: #355c7d;
-    transition: left .2s ease; 
-    z-index: 3000; 
+    transition: left .2s ease;
+    z-index: 3000;
 }
 
 .mobile-nav header {
-    color: #fff; 
-    font-size: 20px; 
-    text-transform: uppercase; 
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
     cursor: pointer;
     padding: 10px;
     font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
 .mobile-nav a {
-    display: block; 
+    display: block;
     text-align: center;
     padding: 10px 0;
     margin: 0;
@@ -234,11 +248,17 @@ footer .holder {
     color: #292929;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+
+{
+    opacity: 0;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -247,12 +267,12 @@ footer .holder {
     }
 
     .mobile-nav-trigger {
-        display: block; 
-        position: absolute; 
+        display: block;
+        position: absolute;
         top: 45px;
-        right: 30px; 
-        font-size: 40px; 
-        cursor: pointer; 
+        right: 30px;
+        font-size: 40px;
+        cursor: pointer;
         color: #fff;
     }
 }
@@ -277,7 +297,8 @@ footer .holder {
         grid-template-columns: 1fr;
     }
 
-    .contact-info, .social-media {
+    .contact-info,
+    .social-media {
         text-align: center;
     }
 }

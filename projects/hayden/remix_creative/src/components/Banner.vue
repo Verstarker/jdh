@@ -13,23 +13,21 @@ export default {
 </script>
 
 <style scoped>
-
-@media only screen and (max-width: 950px){
+@media only screen and (max-width: 950px) {
     .banner h1 {
         font-size: 90px;
     }
 }
 
-@media only screen and (max-width: 640px){
+@media only screen and (max-width: 640px) {
     .banner h1 {
         font-size: 60px;
     }
 }
 
-@media only screen and (max-width: 440px){
+@media only screen and (max-width: 440px) {
     .banner h1 {
         font-size: 40px;
     }
 }
-
 </style>

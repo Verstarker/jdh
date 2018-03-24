@@ -5,7 +5,7 @@
             <h2>Here's some of the stuff we do</h2>
             <div class="projects">
                 <ul class="projects-list">
-                    <li class="project" v-for="project in projects.slice(0, 12)"  v-on:click="showModal(project.id)">
+                    <li class="project" v-for="project in projects.slice(0, 12)" v-on:click="showModal(project.id)">
                         <template v-if="project.covers[404]">
                             <img v-bind:src='project.covers[404]' alt="project.name">
                         </template>
@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         getProjects: function() {
-            var randomIndex = Math.floor(Math.random()*this.users.length);
+            var randomIndex = Math.floor(Math.random() * this.users.length);
             this.$http.jsonp('http://behance.net/v2/users/' + this.users[randomIndex] + '/projects?api_key=ddao6kwQUp8x90o1u1uk8Lt82md8thrX')
                 .then(response => {
                     this.projects = response.body.projects;
@@ -157,13 +157,13 @@ li {
     visibility: visible;
 }
 
-@media only screen and (max-width: 1340px){
+@media only screen and (max-width: 1340px) {
     .projects-list {
         grid-template-columns: repeat(4, 4fr);
     }
 }
 
-@media only screen and (max-width: 950px){
+@media only screen and (max-width: 950px) {
     h1 {
         font-size: 90px;
     }
@@ -173,19 +173,19 @@ li {
     }
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
     .projects-list {
         grid-template-columns: repeat(2, 2fr);
     }
 }
 
-@media only screen and (max-width: 640px){
+@media only screen and (max-width: 640px) {
     h2 {
         font-size: 40px;
     }
 }
 
-@media only screen and (max-width: 510px){
+@media only screen and (max-width: 510px) {
     .projects-list {
         grid-template-columns: repeat(1, 1fr);
     }

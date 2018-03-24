@@ -51,7 +51,7 @@ export default {
     font-weight: 700;
 }
 
-@media only screen and (max-width: 740px){
+@media only screen and (max-width: 740px) {
     .about-description {
         grid-template-columns: 1fr;
     }

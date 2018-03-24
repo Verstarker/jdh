@@ -15,7 +15,8 @@
                     </template>
                     <h3>Fields</h3>
                     <template class="fields" v-for="designerField in designerFields">
-                        {{ designerField }}<span>, </span>
+                        {{ designerField }}
+                        <span>, </span>
                     </template>
                     <h3>Stats</h3>
                     <p>Followers: {{ designer.stats.followers }}</p>
@@ -29,7 +30,7 @@
                     </template>
                     <template v-if="socialLinks">
                         <div class="social-links">
-                            <template  v-for="socialLink in socialLinks">
+                            <template v-for="socialLink in socialLinks">
                                 <a v-bind:href="socialLink.url" target="_blank">
                                     <template v-if="socialLink.service_name === 'Facebook'">
                                         <span class="mdi mdi-facebook"></span>
@@ -51,15 +52,16 @@
                                     </template>
                                 </a>
                             </template>
-                        </div><!-- / social links -->
+                        </div>
+                        <!-- / social links -->
                     </template>
                 </div>
                 <!-- / designer about me -->
             </div>
             <!-- / designer info -->
 
-           <div class="projects">
-               <h2>{{designer.display_name }}'s Projects</h2>
+            <div class="projects">
+                <h2>{{designer.display_name }}'s Projects</h2>
                 <ul class="projects-list">
                     <li class="project" v-for="project in projects" v-on:click="showModal(project.id)">
                         <template v-if="project.covers[404]">
@@ -136,7 +138,6 @@ export default {
 </script>
 <!-- styling for the component -->
 <style scoped>
-
 li {
     font-size: 0;
     margin: 0;
@@ -182,7 +183,7 @@ li {
 }
 
 .social-links span:hover {
-    background-color:#292929;
+    background-color: #292929;
     color: #fff;
 }
 
@@ -234,27 +235,29 @@ li {
     transform: translate(-50%, -50%);
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s ease;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
 }
 
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 
-@media only screen and (max-width: 1340px){
+@media only screen and (max-width: 1340px) {
     .projects-list {
         grid-template-columns: repeat(4, 4fr);
     }
 }
 
-@media only screen and (max-width: 950px){
+@media only screen and (max-width: 950px) {
     .projects-list {
         grid-template-columns: repeat(3, 3fr);
     }
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
     .projects-list {
         grid-template-columns: repeat(2, 2fr);
     }
@@ -263,10 +266,9 @@ li {
     }
 }
 
-@media only screen and (max-width: 510px){
+@media only screen and (max-width: 510px) {
     .projects-list {
         grid-template-columns: repeat(1, 1fr);
     }
 }
-
 </style>

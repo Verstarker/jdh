@@ -4,7 +4,8 @@
             <slot name="header">
                 <div class="heading">
                     <h2>{{projectDetails.name}}</h2>
-                </div><!-- / heading -->
+                </div>
+                <!-- / heading -->
                 <div class="author" v-on:click="closeModal()">
                     <router-link v-bind:to="'/designers/' + projectDetails.owners[0].username">
                         <img v-bind:src="projectDetails.owners[0].images[138]" alt="">
@@ -162,15 +163,17 @@ export default {
     font-size: 12px;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s ease;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
 }
 
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 
-@media only screen and (max-width: 1840px){
+@media only screen and (max-width: 1840px) {
     .modal-mask span {
         position: static;
         font-size: 80px;
@@ -179,7 +182,7 @@ export default {
     }
 }
 
-@media only screen and (max-width: 1040px){
+@media only screen and (max-width: 1040px) {
     #modal {
         grid-template-columns: 1fr;
     }
